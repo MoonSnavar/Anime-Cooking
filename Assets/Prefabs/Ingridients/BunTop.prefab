@@ -147,9 +147,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f57903248b5214240b983a56a005b700, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemType: 2
-  anotherSpawn: 0
-  mouseDown: 0
+  ItemType: 2
+  FunMode: 0
+  AnotherSpawn: 0
+  MouseDown: 0
 --- !u!82 &2375182814543174651
 AudioSource:
   m_ObjectHideFlags: 0

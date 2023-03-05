@@ -74,7 +74,7 @@ public class OrderGenerator : MonoBehaviour
         {
             timeBetweenOrders = 15f;
             countOrders = 5;
-            maxIngridients = 14;
+            maxIngridients = 20;
             orderTime = 60f;
 
             recivedMoney = 0;
@@ -92,15 +92,15 @@ public class OrderGenerator : MonoBehaviour
     private void CheckOrder(InteractableObject interactableObject, Order order, Customer customer)
     {
         List<InteractableObject.Type> ingridients = new();
-        ingridients.Add(interactableObject.itemType);
+        ingridients.Add(interactableObject.ItemType);
         for (int i = 0; i < interactableObject.transform.childCount; i++)
         {
-            ingridients.Add(interactableObject.transform.GetChild(i).GetComponent<InteractableObject>().itemType);
+            ingridients.Add(interactableObject.transform.GetChild(i).GetComponent<InteractableObject>().ItemType);
             if (interactableObject.transform.GetChild(i).transform.childCount != 0)
             {
                 for (int j = 0; j < interactableObject.transform.GetChild(i).transform.childCount; j++)
                 {
-                    ingridients.Add(interactableObject.transform.GetChild(i).transform.GetChild(j).GetComponent<InteractableObject>().itemType);
+                    ingridients.Add(interactableObject.transform.GetChild(i).transform.GetChild(j).GetComponent<InteractableObject>().ItemType);
                 }
             }
         }
@@ -318,13 +318,13 @@ public class OrderGenerator : MonoBehaviour
         {
             float offset = 0.6f;
             Instantiate(GetIngredientPrefabByType(InteractableObject.Type.Plate), hambagaSpawnPoint.transform.position, hambagaSpawnPoint.transform.rotation)
-                .GetComponent<InteractableObject>().anotherSpawn = true; 
+                .GetComponent<InteractableObject>().AnotherSpawn = true; 
 
             var orderIngridents = panelOrder.transform.GetChild(0).GetComponent<Order>().Ingredients;
             foreach (var item in orderIngridents)
             {
                 Instantiate(GetIngredientPrefabByType(item), new Vector3(hambagaSpawnPoint.transform.position.x, hambagaSpawnPoint.transform.position.y + offset), hambagaSpawnPoint.transform.rotation)
-                    .GetComponent<InteractableObject>().anotherSpawn = true;
+                    .GetComponent<InteractableObject>().AnotherSpawn = true;
                 offset += 0.6f;                
             }
 
@@ -342,7 +342,7 @@ public class OrderGenerator : MonoBehaviour
     {
         foreach (var item in ingridientsPrefabs)
         {
-            if (item.GetComponent<InteractableObject>().itemType == type)
+            if (item.GetComponent<InteractableObject>().ItemType == type)
                 return item;
         }
         return null;

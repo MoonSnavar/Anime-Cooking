@@ -17,23 +17,24 @@ public class InteractableObject : MonoBehaviour, IPointerDownHandler, IPointerUp
         Tomate
     }
 
-    public Type itemType;
-    public bool anotherSpawn = false;
-    public bool mouseDown;
+    public Type ItemType;
+    public bool FunMode = false;
+    public bool AnotherSpawn = false;
+    public bool MouseDown;
     private AudioSource click;
     private void Start()
     {
         click = GetComponent<AudioSource>();
 
-        mouseDown = anotherSpawn == false;
-        if (mouseDown)
+        MouseDown = AnotherSpawn == false;
+        if (MouseDown)
             click.Play();
 
     }
 
     private void Update()
     {
-        if (mouseDown)
+        if (MouseDown)
         {
             Vector2 cursor = Input.mousePosition;
             cursor = Camera.main.ScreenToWorldPoint(cursor);
@@ -47,34 +48,41 @@ public class InteractableObject : MonoBehaviour, IPointerDownHandler, IPointerUp
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.transform.CompareTag("Food"))
+        //если отдельный ингридиент столкнулся с подобным
+        if (collision.transform.CompareTag("Food") && transform.parent == null && ItemType != Type.Plate && transform.tag != "Table")
         {
-            if (collision.transform.GetComponent<InteractableObject>().itemType == Type.Plate)
+            if (collision.transform.GetComponent<InteractableObject>().ItemType == Type.Plate)
             {
                 collision.transform.parent = null;
-                transform.SetParent(collision.transform);
-                print("ТАРЕЛКА НАЙДЕНА");
+                transform.SetParent(collision.transform);                
             }
             else
             {
-                transform.SetParent(collision.transform.root);
-                GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;                
+                transform.SetParent(collision.transform.root);                
             }
+            
+        }
+        else if (collision.transform.CompareTag("Table") && FunMode)
+        {
+            if (ItemType != Type.Plate)
+                GetComponent<BoxCollider2D>().enabled = false;
         }
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        mouseDown = false;
+        MouseDown = false;
+        if (ItemType == Type.Plate)
+            GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
     }
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        if (itemType != Type.Plate)
-            GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+        if(ItemType == Type.Plate)
+            GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
 
         click.Play();
-        mouseDown = true;
+        MouseDown = true;
         if (transform.parent != null)
         {
             transform.DetachChildren();

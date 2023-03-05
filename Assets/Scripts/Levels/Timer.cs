@@ -17,7 +17,7 @@ public class Timer : MonoBehaviour
         if (levelCharacteristics.levelDifficult > 0)
             time = 60 + (levelCharacteristics.levelDifficult * 6);
         else
-            time = 300;
+            time = 180;
 
         timeLeft = time;
         timerOn = false;

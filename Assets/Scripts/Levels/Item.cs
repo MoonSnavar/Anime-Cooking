@@ -15,6 +15,10 @@ public class Item : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     public void OnPointerUp(PointerEventData eventData)
     {
         if (interactableObject != null)
-            interactableObject.mouseDown = false;
+        {
+            interactableObject.MouseDown = false;
+            if (interactableObject.ItemType == InteractableObject.Type.Plate)
+                interactableObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+        }
     }
 }

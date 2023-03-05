@@ -16,7 +16,7 @@ public class Customer : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Food") && collision.GetComponent<InteractableObject>().itemType == InteractableObject.Type.Plate)
+        if (collision.CompareTag("Food") && collision.GetComponent<InteractableObject>().ItemType == InteractableObject.Type.Plate)
             GiveOrder?.Invoke(collision.GetComponent<InteractableObject>(), order, this);
     }
     private void TransferOrder(Order order)
