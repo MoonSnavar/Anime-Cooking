@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class InteractableObject : MonoBehaviour
+public class InteractableObject : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
     public enum Type{
         Plate,
@@ -23,21 +24,6 @@ public class InteractableObject : MonoBehaviour
     {
         mouseDown = true;
         click = GetComponent<AudioSource>();
-    }
-    private void OnMouseUp()
-    {
-        mouseDown = false;
-    }
-    private void OnMouseDown()
-    {
-        click.Play();
-        mouseDown = true;
-        if (transform.parent != null)
-        {
-            transform.DetachChildren();
-            transform.parent = null;
-
-        }
     }
 
     private void Update()
@@ -66,6 +52,23 @@ public class InteractableObject : MonoBehaviour
             }
             else
                 transform.SetParent(collision.transform.root);
+        }
+    }
+
+    public void OnPointerUp(PointerEventData eventData)
+    {
+        mouseDown = false;
+    }
+
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        click.Play();
+        mouseDown = true;
+        if (transform.parent != null)
+        {
+            transform.DetachChildren();
+            transform.parent = null;
+
         }
     }
 }

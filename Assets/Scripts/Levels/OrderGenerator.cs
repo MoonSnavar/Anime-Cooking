@@ -136,10 +136,14 @@ public class OrderGenerator : MonoBehaviour
             stars[i].SetActive(true);
         }
 
+
         if (PlayerPrefs.GetInt(levelCharacteristics.levelDifficult + "Level", 0) < lenght)
             PlayerPrefs.SetInt(levelCharacteristics.levelDifficult + "Level", lenght);
 
         EndMenu.SetActive(true);
+
+        if (lenght > 0 && !PlayerPrefs.HasKey((levelCharacteristics.levelDifficult + 1).ToString() + "LevelUnblock"))
+            PlayerPrefs.SetInt((levelCharacteristics.levelDifficult + 1).ToString() + "LevelUnblock", 1);
     }
         
     private int StarCalculate()

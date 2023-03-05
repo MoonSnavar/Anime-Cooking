@@ -2,6 +2,7 @@ using InstantGamesBridge;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MenuController : MonoBehaviour
 {
@@ -17,6 +18,8 @@ public class MenuController : MonoBehaviour
         {
             textblock.SetActive(true);
             PlayerPrefs.SetInt("FirstLaunch", 1);
+            PlayerPrefs.SetInt("1LevelUnblock", 1);
+
         }
 
         moneyText.text = PlayerPrefs.GetInt("Money").ToString();
@@ -26,6 +29,7 @@ public class MenuController : MonoBehaviour
             var lvl = Instantiate(levelPrefab, levelPanel.transform);
             lvl.GetComponent<Level>().levelID = i;
             lvl.GetComponent<Level>().OnClick += LoadLevel;
+            lvl.GetComponent<Button>().interactable = PlayerPrefs.GetInt(i + "LevelUnblock") == 1;
         }
     }
 

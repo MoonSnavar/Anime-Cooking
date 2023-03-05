@@ -25,12 +25,12 @@ public class MusicController : MonoBehaviour
     }
     public void ChangeBGMMusic(Slider slider)
     {
-        audioMixerGroupBGM.audioMixer.SetFloat("BGMVolume", Mathf.Lerp(-80,0, slider.value));
+        audioMixerGroupBGM.audioMixer.SetFloat("BGMVolume",slider.value);
         PlayerPrefs.SetFloat("BGMMusic", slider.value);
     }
     public void ChangeSFXMusic(Slider slider)
     {
-        audioMixerGroupBGM.audioMixer.SetFloat("SFXVolume", Mathf.Lerp(-80, 0, slider.value));
+        audioMixerGroupBGM.audioMixer.SetFloat("SFXVolume", slider.value);
         PlayerPrefs.SetFloat("SFXMusic", slider.value);
     }
 }
