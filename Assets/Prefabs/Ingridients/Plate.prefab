@@ -149,8 +149,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemType: 0
+  anotherSpawn: 0
   mouseDown: 0
-  click: {fileID: 0}
 --- !u!61 &8831585317137738856
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -188,7 +188,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -1495520208101088232, guid: f7f975b90727dec4a99dfd91b7d37bcb, type: 2}
   m_audioClip: {fileID: 8300000, guid: 110e222cf4fe7d642b48c56366d3e3d9, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0

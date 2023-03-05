@@ -18,12 +18,17 @@ public class InteractableObject : MonoBehaviour, IPointerDownHandler, IPointerUp
     }
 
     public Type itemType;
+    public bool anotherSpawn = false;
     public bool mouseDown;
     private AudioSource click;
     private void Start()
     {
-        mouseDown = true;
         click = GetComponent<AudioSource>();
+
+        mouseDown = anotherSpawn == false;
+        if (mouseDown)
+            click.Play();
+
     }
 
     private void Update()
@@ -51,7 +56,10 @@ public class InteractableObject : MonoBehaviour, IPointerDownHandler, IPointerUp
                 print("“¿–≈À ¿ Õ¿…ƒ≈Õ¿");
             }
             else
+            {
                 transform.SetParent(collision.transform.root);
+                GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;                
+            }
         }
     }
 
@@ -62,6 +70,9 @@ public class InteractableObject : MonoBehaviour, IPointerDownHandler, IPointerUp
 
     public void OnPointerDown(PointerEventData eventData)
     {
+        if (itemType != Type.Plate)
+            GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+
         click.Play();
         mouseDown = true;
         if (transform.parent != null)

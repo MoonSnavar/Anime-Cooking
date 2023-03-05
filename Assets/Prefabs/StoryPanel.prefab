@@ -316,10 +316,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfc006336bf428640937571521b8eb56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  textObjectsForFunMode: {fileID: 11400000, guid: 59adbfc2eed57e348984e6270e5d99e0, type: 2}
+  textObjects:
+  - {fileID: 11400000, guid: d7a345339e8c933449c72938a66c67eb, type: 2}
+  - {fileID: 11400000, guid: 114af08492310be43aaab17f6683812b, type: 2}
+  - {fileID: 11400000, guid: 114af08492310be43aaab17f6683812b, type: 2}
+  - {fileID: 11400000, guid: 114af08492310be43aaab17f6683812b, type: 2}
+  - {fileID: 11400000, guid: 114af08492310be43aaab17f6683812b, type: 2}
+  - {fileID: 11400000, guid: 114af08492310be43aaab17f6683812b, type: 2}
   characterImage: {fileID: 638662092738215130}
   text: {fileID: 638662094136776170}
   nameText: {fileID: 1756163213470393244}
-  textObject: {fileID: 11400000, guid: 114af08492310be43aaab17f6683812b, type: 2}
   delay: 0.05
 --- !u!1 &638662094136776180
 GameObject:

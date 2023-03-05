@@ -3,11 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 
 public class OrderGenerator : MonoBehaviour
-{    
+{
+    [SerializeField] private int maxCustomers = 4;
+    [SerializeField] private TMP_Text possibilityText;
+    [SerializeField] private GameObject[] ingridientsPrefabs;
+    [SerializeField] private Transform hambagaSpawnPoint;
     [SerializeField] private Transform[] spawnPoints;
     [SerializeField] private GameObject[] stars;
     [SerializeField] private GameObject EndMenu;
@@ -33,30 +36,51 @@ public class OrderGenerator : MonoBehaviour
     private void Start()
     {
         audioSource = GetComponent<AudioSource>();
-        timeBetweenOrders = 15f - (levelCharacteristics.levelDifficult / 3);
-        countOrders = 3 + (levelCharacteristics.levelDifficult / 2);
-        maxIngridients = 6 + (levelCharacteristics.levelDifficult / 4);
-        orderTime = 60 - levelCharacteristics.levelDifficult;
-
-        recivedMoney = 0;
-        moneyForOrder = 5 + (levelCharacteristics.levelDifficult / 2);
-        moneyToCompleteLevel = (countOrders * moneyForOrder);
+        SetStats();
 
         storyBlock.OnStoryTextEnd += StartGenerator;
         timer.OnTimerEnd += CheckResults;
+
+        UpdateText();
 
         foreach (var item in stars)
         {
             item.SetActive(false);
         }
 
-        Bridge.advertisement.rewardedStateChanged += state => 
-        { 
+        Bridge.advertisement.rewardedStateChanged += state =>
+        {
             if (state == InstantGamesBridge.Modules.Advertisement.RewardedState.Rewarded)
             {
                 MultipleMoney();
-            } 
+            }
         };
+    }
+
+    private void SetStats()
+    {
+        if (levelCharacteristics.levelDifficult > 0)
+        {
+            timeBetweenOrders = 15f - (levelCharacteristics.levelDifficult / 3);
+            countOrders = 3 + (levelCharacteristics.levelDifficult / 2);
+            maxIngridients = 6 + (levelCharacteristics.levelDifficult / 4);
+            orderTime = 60 - levelCharacteristics.levelDifficult;
+
+            recivedMoney = 0;
+            moneyForOrder = 5 + (levelCharacteristics.levelDifficult / 2);
+            moneyToCompleteLevel = (countOrders * moneyForOrder);
+        }
+        else
+        {
+            timeBetweenOrders = 15f;
+            countOrders = 5;
+            maxIngridients = 14;
+            orderTime = 60f;
+
+            recivedMoney = 0;
+            moneyForOrder = 50;
+            moneyToCompleteLevel = (countOrders * moneyForOrder);
+        }
     }
 
     private void StartGenerator()
@@ -200,8 +224,8 @@ public class OrderGenerator : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitUntil(() => panelOrder.transform.childCount < 4 && countOrders > 0 && panelOrder.transform.childCount < countOrders);
-            if (panelOrder.transform.childCount < 4 && countOrders > 0 && panelOrder.transform.childCount < countOrders)
+            yield return new WaitUntil(() => panelOrder.transform.childCount < maxCustomers && countOrders > 0 && panelOrder.transform.childCount < countOrders);
+            if (panelOrder.transform.childCount < maxCustomers && countOrders > 0 && panelOrder.transform.childCount < countOrders)
             {
                 var order = Instantiate(prefabOrder, panelOrder.transform).GetComponent<Order>();
                 //количество, мин 3, первая и последняя булка не рандомятся
@@ -286,6 +310,42 @@ public class OrderGenerator : MonoBehaviour
             default:
                 return InteractableObject.Type.Cheese;
         }
+    }
+
+    public void SpawnFullOrder()
+    {        
+        if (panelOrder.transform.childCount > 0 && PlayerPrefs.GetInt("Possibility") > 0)
+        {
+            float offset = 0.6f;
+            Instantiate(GetIngredientPrefabByType(InteractableObject.Type.Plate), hambagaSpawnPoint.transform.position, hambagaSpawnPoint.transform.rotation)
+                .GetComponent<InteractableObject>().anotherSpawn = true; 
+
+            var orderIngridents = panelOrder.transform.GetChild(0).GetComponent<Order>().Ingredients;
+            foreach (var item in orderIngridents)
+            {
+                Instantiate(GetIngredientPrefabByType(item), new Vector3(hambagaSpawnPoint.transform.position.x, hambagaSpawnPoint.transform.position.y + offset), hambagaSpawnPoint.transform.rotation)
+                    .GetComponent<InteractableObject>().anotherSpawn = true;
+                offset += 0.6f;                
+            }
+
+            PlayerPrefs.SetInt("Possibility", PlayerPrefs.GetInt("Possibility") - 1);
+            UpdateText();
+        }
+    }
+
+    private void UpdateText()
+    {
+        possibilityText.text = PlayerPrefs.GetInt("Possibility", 0).ToString();
+    }
+
+    private GameObject GetIngredientPrefabByType(InteractableObject.Type type)
+    {
+        foreach (var item in ingridientsPrefabs)
+        {
+            if (item.GetComponent<InteractableObject>().itemType == type)
+                return item;
+        }
+        return null;
     }
 
     private void DestroyCustomerAndOrder(Order order, Customer customer)

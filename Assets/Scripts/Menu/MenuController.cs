@@ -8,6 +8,7 @@ public class MenuController : MonoBehaviour
 {
     [SerializeField] private int maxScenes;
     [SerializeField] private TMP_Text moneyText;
+    [SerializeField] private TMP_Text possibilityText;
     [SerializeField] private GameObject textblock;
     [SerializeField] private GameObject levelPrefab;
     [SerializeField] private GameObject levelPanel;
@@ -22,7 +23,9 @@ public class MenuController : MonoBehaviour
 
         }
 
-        moneyText.text = PlayerPrefs.GetInt("Money").ToString();
+        PlayerPrefs.SetInt("Currentlevel", 0);
+
+        UpdateText();
 
         for (int i = 1; i <= maxScenes; i++)
         {
@@ -33,10 +36,17 @@ public class MenuController : MonoBehaviour
         }
     }
 
+    private void UpdateText()
+    {
+        moneyText.text = PlayerPrefs.GetInt("Money").ToString();
+        possibilityText.text = "Всего возможностей - " + PlayerPrefs.GetInt("Possibility");
+    }
+
     public void LoadLevel(int levelIndex)
     {
         Bridge.advertisement.ShowInterstitial();
-        SceneManager.LoadScene(levelIndex);        
+        PlayerPrefs.SetInt("Currentlevel", levelIndex);
+        SceneManager.LoadScene(1);        
     }
     private void OnDestroy()
     {
@@ -44,5 +54,24 @@ public class MenuController : MonoBehaviour
         {
             levelPanel.transform.GetChild(i).GetComponent<Level>().OnClick -= LoadLevel;
         }
+    }
+    public void BuyFullHambaga()
+    {
+        var money = PlayerPrefs.GetInt("Money");
+        if (money >= 50)
+        {
+            PlayerPrefs.SetInt("Money", money - 50);
+
+            PlayerPrefs.SetInt("Possibility", PlayerPrefs.GetInt("Possibility", 0) + 1);
+            
+            UpdateText();
+        }
+    }
+
+    public void LoadFunMode()
+    {
+        Bridge.advertisement.ShowInterstitial();
+        PlayerPrefs.SetInt("Currentlevel", -1);
+        SceneManager.LoadScene(2);
     }
 }
