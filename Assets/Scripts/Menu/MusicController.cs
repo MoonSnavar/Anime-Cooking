@@ -17,9 +17,19 @@ public class MusicController : MonoBehaviour
             sliderBGM.value = PlayerPrefs.GetFloat("BGMMusic");
             ChangeBGMMusic(sliderBGM);
         }
+        else
+        {
+            sliderBGM.value = -10;
+            ChangeBGMMusic(sliderBGM);
+        }
         if (PlayerPrefs.HasKey("SFXMusic"))
         {
             sliderSFX.value = PlayerPrefs.GetFloat("SFXMusic");
+            ChangeSFXMusic(sliderSFX);
+        }
+        else
+        {
+            sliderSFX.value = -10;
             ChangeSFXMusic(sliderSFX);
         }
     }

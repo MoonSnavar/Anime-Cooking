@@ -10,7 +10,7 @@ public class SwipeHandler : MonoBehaviour, IDragHandler, IBeginDragHandler
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        if (Mathf.Abs(eventData.delta.x) > Mathf.Abs(eventData.delta.y) && Mathf.Abs(eventData.delta.x) > 3f)
+        if (Mathf.Abs(eventData.delta.x) > Mathf.Abs(eventData.delta.y))
         {
             cameraTransform.SetX(-eventData.delta.x);            
         }

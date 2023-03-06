@@ -316,14 +316,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfc006336bf428640937571521b8eb56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textObjectsForFunMode: {fileID: 11400000, guid: 59adbfc2eed57e348984e6270e5d99e0, type: 2}
-  textObjects:
+  textObjectsForFunModeRU: {fileID: 11400000, guid: 59adbfc2eed57e348984e6270e5d99e0, type: 2}
+  textObjectsForFunModeENG: {fileID: 11400000, guid: 2b0ce03dd206bad439dda0811284321c, type: 2}
+  textObjectsRU:
   - {fileID: 11400000, guid: d7a345339e8c933449c72938a66c67eb, type: 2}
   - {fileID: 11400000, guid: 114af08492310be43aaab17f6683812b, type: 2}
-  - {fileID: 11400000, guid: 114af08492310be43aaab17f6683812b, type: 2}
-  - {fileID: 11400000, guid: 114af08492310be43aaab17f6683812b, type: 2}
-  - {fileID: 11400000, guid: 114af08492310be43aaab17f6683812b, type: 2}
-  - {fileID: 11400000, guid: 114af08492310be43aaab17f6683812b, type: 2}
+  textObjectsENG:
+  - {fileID: 11400000, guid: a1e6ddb8698136647a45978f99d106aa, type: 2}
+  - {fileID: 11400000, guid: 8110d1cbb2febf24e9c1771efcf2d96f, type: 2}
   characterImage: {fileID: 638662092738215130}
   text: {fileID: 638662094136776170}
   nameText: {fileID: 1756163213470393244}

@@ -1,3 +1,4 @@
+using InstantGamesBridge;
 using System;
 using System.Collections;
 using TMPro;
@@ -7,8 +8,10 @@ using UnityEngine.UI;
 public class StoryBlock : MonoBehaviour
 {
     public Action OnStoryTextEnd;
-    [SerializeField] private TextObject textObjectsForFunMode;
-    [SerializeField] private TextObject[] textObjects;
+    [SerializeField] private TextObject textObjectsForFunModeRU;
+    [SerializeField] private TextObject textObjectsForFunModeENG;
+    [SerializeField] private TextObject[] textObjectsRU;
+    [SerializeField] private TextObject[] textObjectsENG;
     [SerializeField] private Image characterImage;
     [SerializeField] private TMP_Text text;
     [SerializeField] private TMP_Text nameText;
@@ -20,12 +23,20 @@ public class StoryBlock : MonoBehaviour
     {
         var currentLevel = PlayerPrefs.GetInt("Currentlevel");
         if (currentLevel >= 0)
-            textObject = textObjects[currentLevel];
+        {
+            if (Bridge.platform.language == "ru")
+                textObject = textObjectsRU[currentLevel];
+            else
+                textObject = textObjectsENG[currentLevel];
+        }
         else
         {
             if (!PlayerPrefs.HasKey("FirsTimeInFunMode"))
             {
-                textObject = textObjectsForFunMode;
+                if (Bridge.platform.language == "ru")
+                    textObject = textObjectsForFunModeRU;
+                else
+                    textObject = textObjectsForFunModeENG;
                 PlayerPrefs.SetInt("FirsTimeInFunMode", 1);
             }
             else

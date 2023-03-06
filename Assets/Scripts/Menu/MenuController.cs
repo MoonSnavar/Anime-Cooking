@@ -6,7 +6,9 @@ using UnityEngine.UI;
 
 public class MenuController : MonoBehaviour
 {
+    [SerializeField] private UITranslator uiTranslator;
     [SerializeField] private int maxScenes;
+    [SerializeField] private TMP_Text buttonFMText;
     [SerializeField] private TMP_Text moneyText;
     [SerializeField] private TMP_Text possibilityText;
     [SerializeField] private GameObject textblock;
@@ -39,7 +41,11 @@ public class MenuController : MonoBehaviour
     private void UpdateText()
     {
         moneyText.text = PlayerPrefs.GetInt("Money").ToString();
-        possibilityText.text = "Всего возможностей - " + PlayerPrefs.GetInt("Possibility");
+        
+        possibilityText.text = uiTranslator.GetTextByName("PossibilityCount") + PlayerPrefs.GetInt("Possibility");
+        
+        bool funMode = PlayerPrefs.GetInt("FunMode", 0) == 1;
+        buttonFMText.text = funMode ? uiTranslator.GetTextByName("FMbuttonText") : uiTranslator.GetTextByName("FMbuttonTextLock");
     }
 
     public void LoadLevel(int levelIndex)
@@ -70,8 +76,19 @@ public class MenuController : MonoBehaviour
 
     public void LoadFunMode()
     {
-        Bridge.advertisement.ShowInterstitial();
-        PlayerPrefs.SetInt("Currentlevel", -1);
-        SceneManager.LoadScene(2);
+        var money = PlayerPrefs.GetInt("Money");
+        bool funMode = PlayerPrefs.GetInt("FunMode", 0) == 1;
+        if (money >= 100 && !funMode)
+        {
+            PlayerPrefs.SetInt("Money", money - 100);
+            PlayerPrefs.SetInt("FunMode", 1);
+            UpdateText();
+        }
+        else if (funMode)
+        {
+            Bridge.advertisement.ShowInterstitial();
+            PlayerPrefs.SetInt("Currentlevel", -1);
+            SceneManager.LoadScene(2);
+        }   
     }
 }
