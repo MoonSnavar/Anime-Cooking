@@ -18,16 +18,20 @@ MonoBehaviour:
   - name: days
     textStrings: days
   - name: FMtext
-    textStrings: fishing mode
+    textStrings: 'Mode
+
+      "catching ingredients"'
   - name: FMbuttonTextLock
     textStrings: unlock
   - name: FMbuttonText
     textStrings: start
   - name: PossibilityText
-    textStrings: 'Buy the ability to instantly cook burgers
-
-      for 50 coins'
+    textStrings: instant cooking
   - name: PossibilityButton
     textStrings: Buy
   - name: PossibilityCount
-    textStrings: Total features - 0
+    textStrings: Total - 0
+  - name: ButtonShop
+    textStrings: Shop
+  - name: ButtonBack
+    textStrings: Back

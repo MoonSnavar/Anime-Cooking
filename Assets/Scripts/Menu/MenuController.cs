@@ -14,6 +14,7 @@ public class MenuController : MonoBehaviour
     [SerializeField] private GameObject textblock;
     [SerializeField] private GameObject levelPrefab;
     [SerializeField] private GameObject levelPanel;
+    [SerializeField] private GameObject levelsGO, shopGO;
     private void Start()
     {
         //PlayerPrefs.DeleteAll();
@@ -90,5 +91,11 @@ public class MenuController : MonoBehaviour
             PlayerPrefs.SetInt("Currentlevel", -1);
             SceneManager.LoadScene(2);
         }   
+    }
+
+    public void ShowAndHide()
+    {
+        levelsGO.SetActive(!levelsGO.activeSelf);
+        shopGO.SetActive(!shopGO.activeSelf);
     }
 }
