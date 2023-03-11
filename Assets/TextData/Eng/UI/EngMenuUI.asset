@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uiDataList:
   - name: title
-    textStrings: Cafe burgernaya
+    textStrings: anime burger cafe
   - name: days
     textStrings: days
   - name: FMtext

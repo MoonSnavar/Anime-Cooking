@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c049e30477a67774994d410b03957339, type: 3}
+  m_Name: 8 Eng
+  m_EditorClassIdentifier: 
+  stringsDataList:
+  - textStrings: Hello!
+    imagePath: Sprites/Characters/Waitress
+    name: Kate
+  - textStrings: Keep it up! You are almost done with your internship!
+    imagePath: Sprites/Characters/Waitress
+    name: Kate
+  - textStrings: As it ends, one more person will get a job with us and then you
+      will have an assistant!
+    imagePath: Sprites/Characters/Waitress
+    name: Kate
+  - textStrings: I'm very happy for you! Would you like to go somewhere together
+      to celebrate your graduation from the internship?
+    imagePath: Sprites/Characters/Waitress
+    name: Kate
+  - textStrings: It will be fun!
+    imagePath: Sprites/Characters/Waitress
+    name: Kate

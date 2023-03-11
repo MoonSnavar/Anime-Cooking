@@ -18,6 +18,7 @@ public class MenuController : MonoBehaviour
     private void Start()
     {
         //PlayerPrefs.DeleteAll();
+        PlayerPrefs.SetInt("Currentlevel", 0);
         if (!PlayerPrefs.HasKey("FirstLaunch"))
         {
             textblock.SetActive(true);
@@ -25,8 +26,6 @@ public class MenuController : MonoBehaviour
             PlayerPrefs.SetInt("1LevelUnblock", 1);
 
         }
-
-        PlayerPrefs.SetInt("Currentlevel", 0);
 
         UpdateText();
 

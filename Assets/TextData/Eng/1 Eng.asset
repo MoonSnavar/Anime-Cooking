@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c049e30477a67774994d410b03957339, type: 3}
+  m_Name: 1 Eng
+  m_EditorClassIdentifier: 
+  stringsDataList:
+  - textStrings: Hello, I'm your boss.
+    imagePath: Sprites/Characters/Boss
+    name: ???
+  - textStrings: "Kat\u0435 should have told you what's going on here."
+    imagePath: Sprites/Characters/Boss
+    name: Boss
+  - textStrings: But I will remind you.
+    imagePath: Sprites/Characters/Boss
+    name: Boss
+  - textStrings: Visitors come to you and make an order.
+    imagePath: Sprites/Characters/Boss
+    name: Boss
+  - textStrings: By order, you cook a hamburger, you have to serve it on a plate.
+    imagePath: Sprites/Characters/Boss
+    name: Boss
+  - textStrings: Don't laugh, some before you cooked on anything, that's why they
+      don't work here anymore.
+    imagePath: Sprites/Characters/Boss
+    name: Boss
+  - textStrings: I'm off, good luck.
+    imagePath: Sprites/Characters/Boss
+    name: Boss

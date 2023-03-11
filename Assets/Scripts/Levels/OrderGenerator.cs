@@ -33,13 +33,17 @@ public class OrderGenerator : MonoBehaviour
     private int moneyToCompleteLevel;
     private AudioSource audioSource;
 
+    private void Awake()
+    {
+        storyBlock.OnStoryTextEnd += StartGenerator;
+        timer.OnTimerEnd += CheckResults;
+    }
     private void Start()
     {
         audioSource = GetComponent<AudioSource>();
         SetStats();
 
-        storyBlock.OnStoryTextEnd += StartGenerator;
-        timer.OnTimerEnd += CheckResults;
+       
 
         UpdateText();
 

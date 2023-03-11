@@ -24,10 +24,34 @@ public class StoryBlock : MonoBehaviour
         var currentLevel = PlayerPrefs.GetInt("Currentlevel");
         if (currentLevel >= 0)
         {
-            if (Bridge.platform.language == "ru")
-                textObject = textObjectsRU[currentLevel];
+            if (currentLevel == 0 || currentLevel == 1)
+            {
+                if (Bridge.platform.language == "ru")
+                    textObject = textObjectsRU[currentLevel];
+                else
+                    textObject = textObjectsENG[currentLevel];
+            }
             else
-                textObject = textObjectsENG[currentLevel];
+            {
+                int textDataIndex = 1;
+                for (int i = 4; i <= 40; i+=4)
+                {
+                    textDataIndex++;
+                    if (currentLevel == i)
+                    {
+                        if (Bridge.platform.language == "ru")
+                            textObject = textObjectsRU[textDataIndex];
+                        else
+                            textObject = textObjectsENG[textDataIndex];
+                    }
+                }
+            }
+            if (textObject == null)
+            {
+                OnStoryTextEnd?.Invoke();
+                gameObject.SetActive(false);
+                return;
+            }
         }
         else
         {

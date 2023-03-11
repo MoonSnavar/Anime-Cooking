@@ -25,7 +25,7 @@ public class UITranslator : MonoBehaviour
         else
             currentTextData = uiTextDataENG;
 
-        currentTextData = uiTextDataRU; /////////////////////////////////////////////////////////
+        //currentTextData = uiTextDataRU; /////////////////////////////////////////////////////////
 
         foreach (var itemTextElement in uisDataList)
         {

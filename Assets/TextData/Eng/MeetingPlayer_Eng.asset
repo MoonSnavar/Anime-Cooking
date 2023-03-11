@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c049e30477a67774994d410b03957339, type: 3}
+  m_Name: MeetingPlayer_Eng
+  m_EditorClassIdentifier: 
+  stringsDataList:
+  - textStrings: I welcome you to our cafe!
+    imagePath: Sprites/Characters/Waitress
+    name: ???
+  - textStrings: "You got a job with us just in time, we just don\u2019t have enough
+      hands."
+    imagePath: Sprites/Characters/Waitress
+    name: ???
+  - textStrings: "Call me Kat\u0435, I will tell you about your work."
+    imagePath: Sprites/Characters/Waitress
+    name: "Kat\u0435"
+  - textStrings: First you need to complete an internship, it lasts 40 days. During
+      it, you need to take orders and cook hamburgers according to them.
+    imagePath: Sprites/Characters/Waitress
+    name: "Kat\u0435"
+  - textStrings: Nothing complicated, just put the ingredients between the buns.
+    imagePath: Sprites/Characters/Waitress
+    name: "Kat\u0435"
+  - textStrings: I'm sure you'll do great with it!
+    imagePath: Sprites/Characters/Waitress
+    name: "Kat\u0435"
+  - textStrings: You can start the first day.
+    imagePath: Sprites/Characters/Waitress
+    name: "Kat\u0435"

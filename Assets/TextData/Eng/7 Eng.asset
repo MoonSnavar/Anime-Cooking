@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c049e30477a67774994d410b03957339, type: 3}
+  m_Name: 7 Eng
+  m_EditorClassIdentifier: 
+  stringsDataList:
+  - textStrings: Hello, did you see a little girl with pink eyes yesterday?
+    imagePath: Sprites/Characters/LimeChara
+    name: ???
+  - textStrings: I'm her sister, Lisa.
+    imagePath: Sprites/Characters/LimeChara
+    name: Lisa
+  - textStrings: She said she went to a friend who works here.
+    imagePath: Sprites/Characters/LimeChara
+    name: Lisa
+  - textStrings: I'm wondering is this true? She is also very shy.
+    imagePath: Sprites/Characters/LimeChara
+    name: Lisa
+  - textStrings: Okay, I won't interfere, bye!
+    imagePath: Sprites/Characters/LimeChara
+    name: Lisa
